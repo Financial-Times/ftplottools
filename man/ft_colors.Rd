@@ -16,4 +16,3 @@ A vector of colour hex codes
 The \code{ft_colors} function returns a different ft color palettes to use in your graphs.
 Palette list is "main", "greys", "reds", "blues", "paired"
 }
-

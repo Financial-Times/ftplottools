@@ -14,4 +14,3 @@ ft_theme(base_size = 12, base_family = "")
 \description{
 ggplot2 theme for FT graphs.
 }
-
