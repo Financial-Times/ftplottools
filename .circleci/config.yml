@@ -44,9 +44,12 @@ jobs:
       - run:
           command: |
             R -e 'devtools::build()'
+      - run:
+          command: |
+            mkdir -p /src
+            cp *.tar.gz /src
       - store_artifacts:
-          path: src/
-          destination: src
+          path: /src
 
 workflows:
   version: 2
