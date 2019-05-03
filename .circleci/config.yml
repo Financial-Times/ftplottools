@@ -47,11 +47,15 @@ jobs:
       - store_artifacts:
         path: src/
         destination: src
+
 workflows:
   version: 2
-  check_and_build:
+  build_and_test:
     jobs:
       - check
       - build:
-        requires:
-          - check
+          requires:
+            - check
+          filters:
+            branches:
+              only: master
