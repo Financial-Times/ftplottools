@@ -50,7 +50,8 @@ jobs:
 workflows:
   version: 2
   check_and_build:
-    - check
-    - build:
-      requires:
-        - check
+    jobs:
+      - check
+      - build:
+        requires:
+          - check
