@@ -43,11 +43,8 @@ jobs:
             - "/usr/local/lib/R/site-library"
       - run:
           command: |
-            R -e 'devtools::build()'
-      - run:
-          command: |
-            mkdir -p /src
-            cp *.tar.gz /src
+            mkdir -p /src;
+            R -e 'devtools::build(path = "/src")'
       - store_artifacts:
           path: /src
 
