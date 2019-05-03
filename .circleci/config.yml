@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-        - keys:
+          keys:
             - deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
             - deps1-{{ .Branch }}
             - deps1-
@@ -45,8 +45,8 @@ jobs:
           command: |
             R -e 'devtools::build()'
       - store_artifacts:
-        path: src/
-        destination: src
+          path: src/
+          destination: src
 
 workflows:
   version: 2
