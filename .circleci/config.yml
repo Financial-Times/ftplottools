@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  check:
     working_directory: ~/main
     docker:
       - image: appsilon/ci-base:1.0
@@ -24,3 +24,33 @@ jobs:
       - store_artifacts:
           path: man/
           destination: man
+  build:
+    docker:
+      - image: appsilon/ci-base:1.0
+    steps:
+      - checkout
+      - restore_cache:
+        - keys:
+            - deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
+            - deps1-{{ .Branch }}
+            - deps1-
+        - run:
+          command: |
+            R -e 'devtools::install_deps(dependencies = TRUE)'
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
+          paths:
+            - "/usr/local/lib/R/site-library"
+      - run:
+          command: |
+            R -e 'devtools::build()'
+      - store_artifacts:
+        path: src/
+        destination: src
+workflows:
+  version: 2
+  check_and_build:
+    - check
+    - build:
+      requires:
+        - check
