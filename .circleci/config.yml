@@ -1,61 +1,64 @@
 version: 2
 jobs:
-  check:
-    working_directory: ~/main
-    docker:
-      - image: appsilon/ci-base:1.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
-            - deps1-{{ .Branch }}
-            - deps1-
-      - run:
-          command: |
-            R -e 'devtools::install_deps(dependencies = TRUE)'
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
-          paths:
-            - "/usr/local/lib/R/site-library"
-      - run:
-          command: |
-            R -e 'devtools::check()'
-      - store_artifacts:
-          path: man/
-          destination: man
   build:
-    docker:
-      - image: appsilon/ci-base:1.0
     steps:
       - checkout
-      - restore_cache:
-          keys:
-            - deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
-            - deps1-{{ .Branch }}
-            - deps1-
+
+      ## setup -------------------------------
+
       - run:
+          name: Set environmental variables
           command: |
-            R -e 'devtools::install_deps(dependencies = TRUE)'
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
-          paths:
-            - "/usr/local/lib/R/site-library"
+            Rscript --vanilla \
+              -e 'dsc <- read.dcf("DESCRIPTION")' \
+              -e 'cat(sprintf("export PKG_TARBALL=%s_%s.tar.gz\n", dsc[,"Package"], dsc[,"Version"]))' \
+              -e 'cat(sprintf("export RCHECK_DIR=%s.Rcheck\n", dsc[,"Package"]))' \
+              >> ${BASH_ENV}
+
+      ## install dependencies ------------------
+
       - run:
+          name: Install devtools and dependencies
           command: |
-            mkdir -p /src;
-            R -e 'devtools::build(path = "/src")'
+            Rscript \
+              -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
+              -e 'devtools::install_deps(dependencies = TRUE)'
+
+      ## build and test -----------------
+
+      - run:
+          name: Build package
+          command: R CMD build .
+
+  check:
+    steps:
+      - run:
+          name: Check package
+          command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual
+      - run:
+          name: Check failures
+          command: |
+            Rscript -e "message(devtools::check_failures(path = '${RCHECK_DIR}'))"
+            # warnings are errors
+            # - run: if grep -q -R "WARNING" "${RCHECK_DIR}/00check.log"; then exit 1; fi
+
+      ## store artifacts -----------------
+
+      - run:
+          command: mv ${RCHECK_DIR} /tmp/Rcheck
+          when: always
+      - store_test_results:
+          path: /tmp/Rcheck/tests/
+          when: always
       - store_artifacts:
-          path: /src
+          path: /tmp/Rcheck
+          when: always
 
 workflows:
   version: 2
-  build_and_test:
+  build_and_check:
     jobs:
-      - check
-      - build:
+      - build
+      - check:
           requires:
-            - check
-          filters:
-            branches:
-              only: master
+            - build
