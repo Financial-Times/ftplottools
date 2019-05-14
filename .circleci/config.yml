@@ -30,8 +30,6 @@ jobs:
           name: Build package
           command: R CMD build .
 
-  check:
-    steps:
       - run:
           name: Check package
           command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual
@@ -56,9 +54,6 @@ jobs:
 
 workflows:
   version: 2
-  build_and_check:
+  build_and_deploy:
     jobs:
       - build
-      - check:
-          requires:
-            - build
