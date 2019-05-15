@@ -63,8 +63,8 @@ jobs:
       - *install_dependencies
       - *package_build
       - add_ssh_keys:
-          fingerprints:
-            - "e4:0e:a8:c5:a5:44:d8:ab:1a:53:ee:38:bb:27:42:9b"
+        fingerprints:
+          - "e4:0e:a8:c5:a5:44:d8:ab:1a:53:ee:38:bb:27:42:9b"
       - run: bash ftran_deploy.sh
 
 workflows:

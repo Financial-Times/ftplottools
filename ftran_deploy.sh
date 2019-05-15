@@ -6,8 +6,9 @@ set -o errexit -o nounset
 addToDrat(){
   PKG_REPO=$PWD
 
-  mkdir $HOME/drat
-  cd $HOME/drat
+  cd ..
+  mkdir drat
+  cd drat
 
   git config --global user.email 'oliver.elliott@ft.com' && git config --global user.name 'Oli Elliott'
   git clone git@github.com:Financial-Times/FTRAN.git
