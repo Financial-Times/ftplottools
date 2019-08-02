@@ -60,34 +60,49 @@ ft_o_colors <- c(
   `teal-100` = "#1AECFF"
 )
 
+ft_colors <- function(...){
+  #' Return FT Color Hex Codes
+  #'
+  #' @param ... Names of the colors
+  #'
+
+  cols <- c(...)
+
+  if(is.null(cols)){
+    return(ft_o_colors)
+  }
+
+  ft_o_colors[cols]
+}
 
 
+# FT Origami Palettes
+ft_o_palettes <- list(
+  `main` = ft_colors("oxford","candy","sky","wasabi"),
+  `origami primary` = ft_colors("paper", "black", "white", "claret", "oxford", "teal"),
+  `origami secondary` = ft_colors("wheat","sky","slate","velvet","mandarin","lemon"),
+  `origami tertiary` = ft_colors("jade","wasabi","crimson","candy"),
+  `black` = ft_colors("black-5","black-10","black-20","black-30","black-40","black-50","black-60","black-70","black-80","black-90"),
+  `white` = ft_colors("white-10","white-20","white-40","white-60","white-80"),
+  `claret` = ft_colors("claret-30","claret-40","claret-50","claret-60","claret-70","claret-80","claret-90","claret-100"),
+  `oxford` = ft_colors("oxford-30","oxford-40","oxford-50","oxford-60","oxford-70","oxford-80","oxford-90","oxford-100"),
+  `teal` = ft_colors("teal-20","teal-30","teal-40","teal-50","teal-60","teal-70","teal-80","teal-90","teal-100")
+)
 
 
-#' FT Colour Palettes.
+#' FT Colour Palettes Generator.
 #'
-#' The \code{ft_colors} function returns a different ft color palettes to use in your graphs.
-#' Palette list is "main", "greys", "reds", "blues", "paired"
-#' @param palette A string.
-#' @return A vector of colour hex codes
-#' @export
-ft_colors <- function(palette = "main"){
-  if(!length(palette) == 1){
-    stop("Input must be string of palette name")
-  }
-  main <- c("#9e2f50","#ff7f8a","#3a70af","#f6801a","#2bbbbf","#410057","#505050","#99c6fb","#27757b","#8b572a")
-  greys <- c("#b0b0b0","#999999","#777777","#505050","#333333","#000000")
-  reds <- c("#ebbcb3","#df9c92","#d17c70","#c36256","#b1493f","#9e2f50")
-  blues <- c("#bcd7e5","#a9cadc","#8ab5cd","#75a5c2","#598caf","2e6e9e")
-  paired <- c("#9e2f50","#ff7f8a","#3a70af","#99c6fb","#c85f04","#f29d53","#27757b","2bbbbf","#410057","#f3dee3")
-  pal_out <- switch(palette,
-                    main = main,
-                    greys = greys,
-                    reds = reds,
-                    blues = blues,
-                    paired = paired)
-  if(length(pal_out) == 0){
-    stop("Palette not found")
-  }
-  return(pal_out)
+#' Returns a function that can interplotate between colors in a palette.
+#'
+#' @param palette Character name of a palette
+#' @param reverse Boolean indicating whether the palette should be reversed
+#' @param ... Additional arguments to pass to colorRampPalette()
+#'
+ft_pal <- function(palette = "main", reverse = FALSE, ...){
+
+  pal <- ft_o_palettes[[palette]]
+
+  if(reverse) pal <- rev(pal)
+
+  grDevices::colorRampPalette(pal, ...)
 }
