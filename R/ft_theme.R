@@ -19,8 +19,20 @@ ft_theme <- function(base_size = 12,
     ggplot2::theme(
       plot.title = ggplot2::element_text(
         color = title_text_color,
+        size = ggplot2::rel(1.2),
         face = "bold",
         hjust = 0
+      ),
+      plot.subtitle = ggplot2::element_text(
+        color = other_text_color,
+        face = "bold",
+        hjust = 0,
+        margin = ggplot2::margin(t = half_line)
+      ),
+      plot.caption = ggplot2::element_text(
+        color = other_text_color,
+        hjust = 0,
+        size = ggplot2::rel(0.8)
       ),
       axis.title = ggplot2::element_text(
         color = other_text_color,
@@ -29,12 +41,20 @@ ft_theme <- function(base_size = 12,
       ),
       axis.text = ggplot2::element_text(
         color = other_text_color,
-        size = ggplot2::rel(0.8)
+        size = ggplot2::rel(0.8),
+        margin = ggplot2::margin()
       ),
-      axis.line.x = ggplot2::element_line(
+      axis.line = ggplot2::element_line(
         colour = grid_line_color,
         size = grid_line_size
       ),
+      axis.line.y = ggplot2::element_blank(),
+      axis.ticks = ggplot2::element_line(
+        color = grid_line_color,
+        size = grid_line_size
+      ),
+      axis.ticks.y = ggplot2::element_blank(),
+      axis.ticks.length = ggplot2::unit(1,"char"),
       panel.grid.major.y = ggplot2::element_line(
         color = grid_line_color,
         size = grid_line_size
@@ -51,6 +71,9 @@ ft_theme <- function(base_size = 12,
         hjust = 0,
         size = ggplot2::rel(0.8)
       ),
+      legend.margin = ggplot2::margin(),
+      legend.box.spacing = ggplot2::unit(0, "char"),
+      plot.margin = ggplot2::margin(1,1,1,1, unit = "char"),
 
       complete = TRUE
     )
