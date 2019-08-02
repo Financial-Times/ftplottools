@@ -2,17 +2,13 @@
 % Please edit documentation in R/ft_colors.R
 \name{ft_colors}
 \alias{ft_colors}
-\title{FT Colour Palettes.}
+\title{Return FT Color Hex Codes}
 \usage{
-ft_colors(palette = "main")
+ft_colors(...)
 }
 \arguments{
-\item{palette}{A string.}
-}
-\value{
-A vector of colour hex codes
+\item{...}{Names of the colors}
 }
 \description{
-The \code{ft_colors} function returns a different ft color palettes to use in your graphs.
-Palette list is "main", "greys", "reds", "blues", "paired"
+Return FT Color Hex Codes
 }
