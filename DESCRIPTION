@@ -12,3 +12,5 @@ LazyData: TRUE
 RoxygenNote: 6.1.1
 Imports: ggplot2
 Repository: FTRAN
+Suggests: 
+    testthat
