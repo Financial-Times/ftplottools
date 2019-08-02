@@ -78,7 +78,7 @@ ft_colors <- function(...){
 
 # FT Origami Palettes
 ft_o_palettes <- list(
-  `main` = ft_colors("oxford","candy","sky","wasabi"),
+  `main` = ft_colors("oxford","teal-100","wasabi","candy"),
   `origami primary` = ft_colors("paper", "black", "white", "claret", "oxford", "teal"),
   `origami secondary` = ft_colors("wheat","sky","slate","velvet","mandarin","lemon"),
   `origami tertiary` = ft_colors("jade","wasabi","crimson","candy"),
