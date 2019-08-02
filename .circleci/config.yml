@@ -37,14 +37,8 @@ jobs:
           command: R CMD build .
 
       - run:
-          name: Runnings tests
-          command: |
-            Rscript -e 'stopifnot(length(devtools::test(stop_on_failure = TRUE)$errors) == 0L)'
-          no_output_timeout: 30m
-
-      - run:
-          name: Check package (without tests)
-          command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual --no-tests
+          name: Check package
+          command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual
 
       - run:
           name: Check failures
