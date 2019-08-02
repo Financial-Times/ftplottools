@@ -1,50 +1,58 @@
 version: 2
-
-references:
-
-  container_config: &container_config
+jobs:
+  build:
     docker:
       - image: rocker/tidyverse:latest
-
-  environment_setup: &environment_setup
-    run:
-      name: Set environmental variables
-      command: |
-        Rscript --vanilla \
-          -e 'dsc <- read.dcf("DESCRIPTION")' \
-          -e 'cat(sprintf("export PKG_TARBALL=%s_%s.tar.gz\n", dsc[,"Package"], dsc[,"Version"]))' \
-          -e 'cat(sprintf("export RCHECK_DIR=%s.Rcheck\n", dsc[,"Package"]))' \
-          >> ${BASH_ENV}
-
-  install_dependencies: &install_dependencies
-    run:
-      name: Install devtools and dependencies
-      command: |
-        Rscript \
-          -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
-          -e 'devtools::install_deps(dependencies = TRUE)'
-
-  package_build: &package_build
-    run:
-      name: Build package
-      command: R CMD build .
-
-
-jobs:
-  check:
-    <<: *container_config
     steps:
       - checkout
-      - *environment_setup
-      - *install_dependencies
-      - *package_build
+
+      ## setup -------------------------------
       - run:
-          name: Check package
-          command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual
+          name: Set environmental variables
+          command: |
+            Rscript --vanilla \
+              -e 'dsc <- read.dcf("DESCRIPTION")' \
+              -e 'cat(sprintf("export PKG_TARBALL=%s_%s.tar.gz\n", dsc[,"Package"], dsc[,"Version"]))' \
+              -e 'cat(sprintf("export RCHECK_DIR=%s.Rcheck\n", dsc[,"Package"]))' \
+              >> ${BASH_ENV}
+
+      ## install dependencies ------------------
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
+
+      - run:
+          name: Install devtools and dependencies
+          command: |
+            Rscript \
+              -e 'if (!requireNamespace("devtools", quietly = TRUE)) install.packages("devtools")' \
+              -e 'devtools::install_deps(dependencies = TRUE)'
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "DESCRIPTION" }}
+          paths:
+            - "/usr/local/lib/R/site-library"
+
+      ## build and test -----------------
+      - run:
+          name: Build package
+          command: R CMD build .
+
+      - run:
+          name: Runnings tests
+          command: |
+            Rscript -e 'stopifnot(length(devtools::test(stop_on_failure = TRUE)$errors) == 0L)'
+          no_output_timeout: 30m
+
+      - run:
+          name: Check package (without tests)
+          command: R CMD check "${PKG_TARBALL}" --as-cran --no-manual --no-tests
+
       - run:
           name: Check failures
           command: |
             Rscript -e "message(devtools::check_failures(path = '${RCHECK_DIR}'))"
+            # warnings are errors
+            # - run: if grep -q -R "WARNING" "${RCHECK_DIR}/00check.log"; then exit 1; fi
+      ## store artifacts -----------------
       - run:
           command: mv ${RCHECK_DIR} /tmp/Rcheck
           when: always
@@ -55,27 +63,8 @@ jobs:
           path: /tmp/Rcheck
           when: always
 
-  deploy:
-    <<: *container_config
-    steps:
-      - checkout
-      - *environment_setup
-      - *install_dependencies
-      - *package_build
-      - add_ssh_keys:
-          fingerprints:
-            - "e4:0e:a8:c5:a5:44:d8:ab:1a:53:ee:38:bb:27:42:9b"
-      - run: bash ftran_deploy.sh
-
 workflows:
   version: 2
-  check_and_deploy:
+  build_and_deploy:
     jobs:
-      - check
-      - deploy:
-          requires:
-            - check
-          filters:
-            branches:
-              only: master
-
+      - build
