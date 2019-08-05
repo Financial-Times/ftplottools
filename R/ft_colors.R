@@ -72,6 +72,11 @@ ft_colors <- function(...){
     return(ft_o_colors)
   }
 
+  not_found <- which(!(cols %in%  names(ft_o_colors)))
+  if(length(not_found) > 0){
+    warning(paste0("Could not find colors ", paste0(cols[not_found], collapse = ", "), ". Returned NAs instead.\n"))
+  }
+
   ft_o_colors[cols]
 }
 
@@ -99,6 +104,9 @@ ft_o_palettes <- list(
 #' @param ... Additional arguments to pass to colorRampPalette()
 #'
 ft_pal <- function(palette = "main", reverse = FALSE, ...){
+
+  assertthat::assert_that(palette %in% names(ft_o_palettes),
+                          msg = paste0("Palette not found. Please use one of: ", paste0(names(ft_o_palettes), collapse = ", ")))
 
   pal <- ft_o_palettes[[palette]]
 
