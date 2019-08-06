@@ -2,7 +2,7 @@
 % Please edit documentation in R/ft_colors.R
 \name{ft_colors}
 \alias{ft_colors}
-\title{Return FT Color Hex Codes}
+\title{FT Colors}
 \usage{
 ft_colors(...)
 }
@@ -10,5 +10,20 @@ ft_colors(...)
 \item{...}{Names of the colors}
 }
 \description{
-Return FT Color Hex Codes
+Get hex codes for ft brand colors.
+}
+\details{
+Use \code{ft_colors()} to see the full list of colours. This list
+  comes from
+  \href{https://registry.origami.ft.com/components/o-colors}{Origami
+  o-colors}.
+}
+\examples{
+# Full list
+ft_colors()
+
+# Choose colors
+ft_colors("paper")
+ft_colors("oxford", "claret")
+
 }

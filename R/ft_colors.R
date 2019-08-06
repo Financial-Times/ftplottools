@@ -61,10 +61,23 @@ ft_o_colors <- c(
 )
 
 ft_colors <- function(...){
-  #' Return FT Color Hex Codes
+  #' FT Colors
   #'
+  #' Get hex codes for ft brand colors.
   #' @param ... Names of the colors
+  #' @details Use \code{ft_colors()} to see the full list of colours. This list
+  #'   comes from
+  #'   \href{https://registry.origami.ft.com/components/o-colors}{Origami
+  #'   o-colors}.
+  #' @examples
+  #' # Full list
+  #' ft_colors()
   #'
+  #' # Choose colors
+  #' ft_colors("paper")
+  #' ft_colors("oxford", "claret")
+  #'
+  #' @export
 
   cols <- c(...)
 
