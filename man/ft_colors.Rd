@@ -2,17 +2,28 @@
 % Please edit documentation in R/ft_colors.R
 \name{ft_colors}
 \alias{ft_colors}
-\title{FT Colour Palettes.}
+\title{FT Colors}
 \usage{
-ft_colors(palette = "main")
+ft_colors(...)
 }
 \arguments{
-\item{palette}{A string.}
-}
-\value{
-A vector of colour hex codes
+\item{...}{Names of the colors}
 }
 \description{
-The \code{ft_colors} function returns a different ft color palettes to use in your graphs.
-Palette list is "main", "greys", "reds", "blues", "paired"
+Get hex codes for ft brand colors.
+}
+\details{
+Use \code{ft_colors()} to see the full list of colours. This list
+  comes from
+  \href{https://registry.origami.ft.com/components/o-colors}{Origami
+  o-colors}.
+}
+\examples{
+# Full list
+ft_colors()
+
+# Choose colors
+ft_colors("paper")
+ft_colors("oxford", "claret")
+
 }

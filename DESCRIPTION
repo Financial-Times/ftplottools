@@ -1,6 +1,6 @@
 Package: ftplottools
-Version: 0.1.0
-Date: 2016-10-20
+Version: 0.1.1
+Date: 2019-08-06
 Title: Styles For FT Graphs
 Authors@R: person("Oliver", "Elliott", email = "oliver.elliott@ft.com", role = c("aut","cre"))
 Author: Oliver Elliott [aut, cre]
@@ -10,7 +10,10 @@ Description: A collection of plot themes and styles to make your plots look
 License: file LICENSE
 LazyData: TRUE
 RoxygenNote: 6.1.1
-Imports: ggplot2
+Imports: 
+    ggplot2,
+    assertthat,
+    magrittr
 Repository: FTRAN
 Suggests: 
     testthat

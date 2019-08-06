@@ -4,13 +4,30 @@
 \alias{ft_theme}
 \title{ggplot2 theme for FT graphs.}
 \usage{
-ft_theme(base_size = 12, base_family = "")
+ft_theme(base_size = 12, base_family = "",
+  base_line_size = base_size/170, base_rect_size = base_size/170)
 }
 \arguments{
 \item{base_size}{The base font size}
 
 \item{base_family}{Font family}
+
+\item{base_line_size}{Default}
+
+\item{base_rect_size}{Default}
 }
 \description{
 ggplot2 theme for FT graphs.
+}
+\examples{
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy, color = class)) +
+  geom_point() +
+  ft_theme()
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  facet_wrap(vars(class)) +
+  ft_theme()
+
 }
