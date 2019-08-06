@@ -8,7 +8,7 @@
 #'   \href{https://registry.origami.ft.com/components/o-colors}{Origami} colors.
 #' @examples
 #' # 10 colors from main palette
-#' main_palette(10)
+#' ft_main(10)
 #'
 
 #' @rdname ft_palettes

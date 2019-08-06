@@ -27,6 +27,7 @@ scale_color_ft <- function(palette = "main", discrete = TRUE, reverse = FALSE, .
   #'   geom_point(aes(x, y, color = z)) +
   #'   scale_color_ft(palette = "claret", discrete = FALSE)
   #'
+  #' @export
 
   pal <- ft_pal(palette = palette, reverse = reverse)
 
@@ -62,6 +63,7 @@ scale_fill_ft <- function(palette = "main", discrete = TRUE, reverse = FALSE, ..
   #'    geom_bar(aes(c1, x, fill = c2), stat = "identity") +
   #'    scale_fill_ft()
   #'
+  #' @export
 
   pal <- ft_pal(palette = palette, reverse = reverse)
 

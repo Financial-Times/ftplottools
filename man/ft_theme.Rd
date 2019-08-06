@@ -20,6 +20,7 @@ ft_theme(base_size = 12, base_family = "",
 ggplot2 theme for FT graphs.
 }
 \examples{
+library(ggplot2)
 ggplot(mpg, aes(displ, hwy, color = class)) +
   geom_point() +
   ft_theme()

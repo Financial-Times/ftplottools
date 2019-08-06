@@ -43,6 +43,6 @@ Color palettes built from
 }
 \examples{
 # 10 colors from main palette
-main_palette(10)
+ft_main(10)
 
 }
