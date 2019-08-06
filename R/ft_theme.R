@@ -1,6 +1,8 @@
 #' ggplot2 theme for FT graphs.
 #' @param base_size The base font size
 #' @param base_family Font family
+#' @param base_line_size Default
+#' @param base_rect_size Default
 #' @importFrom ggplot2 %+replace%
 #' @export
 ft_theme <- function(base_size = 12,

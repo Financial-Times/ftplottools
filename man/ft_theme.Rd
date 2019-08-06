@@ -11,6 +11,10 @@ ft_theme(base_size = 12, base_family = "",
 \item{base_size}{The base font size}
 
 \item{base_family}{Font family}
+
+\item{base_line_size}{Default}
+
+\item{base_rect_size}{Default}
 }
 \description{
 ggplot2 theme for FT graphs.
