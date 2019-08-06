@@ -5,6 +5,16 @@
 #' @param base_rect_size Default
 #' @importFrom ggplot2 %+replace%
 #' @export
+#' @examples
+#' ggplot(mpg, aes(displ, hwy, color = class)) +
+#'   geom_point() +
+#'   ft_theme()
+#'
+#' ggplot(mpg, aes(displ, hwy)) +
+#'   geom_point() +
+#'   facet_wrap(vars(class)) +
+#'   ft_theme()
+#'
 ft_theme <- function(base_size = 12,
                      base_family = "",
                      base_line_size = base_size / 170,
