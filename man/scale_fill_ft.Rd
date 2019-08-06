@@ -19,3 +19,20 @@ scale_fill_ft(palette = "main", discrete = TRUE, reverse = FALSE,
 \description{
 Fill scale constructor for FT colors
 }
+\examples{
+ df <- data.frame(
+   c1 = rep(c("a","b"),3),
+   c2 = rep(c("c","d","e"), each = 2),
+   x = runif(6)
+ )
+
+ library(ggplot2)
+ # plot with discrete color scale
+ ggplot(df) +
+   geom_bar(aes(c1, x, fill = c2), stat = "identity") +
+   scale_fill_ft()
+
+}
+\seealso{
+\code{\link{scale_color_ft}}
+}
