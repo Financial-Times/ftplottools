@@ -19,3 +19,14 @@ ft_theme(base_size = 12, base_family = "",
 \description{
 ggplot2 theme for FT graphs.
 }
+\examples{
+ggplot(mpg, aes(displ, hwy, color = class)) +
+  geom_point() +
+  ft_theme()
+
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  facet_wrap(vars(class)) +
+  ft_theme()
+
+}

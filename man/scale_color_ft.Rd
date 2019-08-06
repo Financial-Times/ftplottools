@@ -8,7 +8,7 @@ scale_color_ft(palette = "main", discrete = TRUE, reverse = FALSE,
   ...)
 }
 \arguments{
-\item{palette}{Character name of a palette in ft_o_palettes}
+\item{palette}{Character name of a palette}
 
 \item{discrete}{Boolean indicating whether color aesthetic is discrete or not}
 

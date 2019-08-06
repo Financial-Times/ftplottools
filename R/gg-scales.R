@@ -3,7 +3,7 @@
 scale_color_ft <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...){
   #' Color scale constructor for FT colors
   #'
-  #' @param palette Character name of a palette in ft_o_palettes
+  #' @param palette Character name of a palette
   #' @param discrete Boolean indicating whether color aesthetic is discrete or not
   #' @param reverse Boolean indicating whether the palette should be reversed
   #' @param ... Additional arguments passed to discrete_scale() or scale_color_gradientn()
@@ -44,7 +44,7 @@ scale_color_ft <- function(palette = "main", discrete = TRUE, reverse = FALSE, .
 scale_fill_ft <- function(palette = "main", discrete = TRUE, reverse = FALSE, ...) {
   #' Fill scale constructor for FT colors
   #'
-  #' @param palette Character name of a palette in ft_o_palettes
+  #' @param palette Character name of a palette
   #' @param discrete Boolean indicating whether color aesthetic is discrete or not
   #' @param reverse Boolean indicating whether the palette should be reversed
   #' @param ... Additional arguments passed to discrete_scale() or scale_color_gradientn()
