@@ -1,5 +1,5 @@
 Package: ftplottools
-Version: 0.1.1
+Version: 0.1.2
 Date: 2019-08-06
 Title: Styles For FT Graphs
 Authors@R: person("Oliver", "Elliott", email = "oliver.elliott@ft.com", role = c("aut","cre"))
