@@ -19,7 +19,7 @@
 #'   facet_wrap(vars(class)) +
 #'   ft_theme()
 #'
-ft_theme <- function(legend_right = F,
+ft_theme <- function(legend_right = FALSE,
                      base_size = 12,
                      base_family = "",
                      base_line_size = base_size / 170,
@@ -31,7 +31,7 @@ ft_theme <- function(legend_right = F,
   title_text_color <- ft_colors("black")
   other_text_color <- ft_colors("black-50")
 
-  if(legend_right == T){
+  if(legend_right == TRUE){
     spec_legend_position <- "right"
     spec_legend_direction <- "vertical"
     legend_justification_spec <- "center"
