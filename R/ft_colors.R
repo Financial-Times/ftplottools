@@ -90,7 +90,7 @@ ft_colors <- function(...){
     warning(paste0("Could not find colors ", paste0(cols[not_found], collapse = ", "), ". Returned NAs instead.\n"))
   }
 
-  ft_o_colors[cols]
+  unname(ft_o_colors[cols])
 }
 
 
