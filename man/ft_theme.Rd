@@ -4,10 +4,14 @@
 \alias{ft_theme}
 \title{ggplot2 theme for FT graphs.}
 \usage{
-ft_theme(base_size = 12, base_family = "",
+ft_theme(legend_right = FALSE, base_size = 12, base_family = "",
   base_line_size = base_size/170, base_rect_size = base_size/170)
 }
 \arguments{
+\item{legend_right}{Logical indicating whether legend should be placed to
+the right of the plot. If FALSE, the default, legend is positioned above the
+plot.}
+
 \item{base_size}{The base font size}
 
 \item{base_family}{Font family}

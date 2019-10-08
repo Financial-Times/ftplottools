@@ -1,4 +1,7 @@
 #' ggplot2 theme for FT graphs.
+#' @param legend_right Logical indicating whether legend should be placed to
+#' the right of the plot. If FALSE, the default, legend is positioned above the
+#' plot.
 #' @param base_size The base font size
 #' @param base_family Font family
 #' @param base_line_size Default
@@ -16,7 +19,8 @@
 #'   facet_wrap(vars(class)) +
 #'   ft_theme()
 #'
-ft_theme <- function(base_size = 12,
+ft_theme <- function(legend_right = FALSE,
+                     base_size = 12,
                      base_family = "",
                      base_line_size = base_size / 170,
                      base_rect_size = base_size / 170) {
@@ -26,6 +30,18 @@ ft_theme <- function(base_size = 12,
   grid_line_size <- 0.2
   title_text_color <- ft_colors("black")
   other_text_color <- ft_colors("black-50")
+
+  if(legend_right == TRUE){
+    spec_legend_position <- "right"
+    spec_legend_direction <- "vertical"
+    legend_justification_spec <- "center"
+    legend_box_spacing_spec = ggplot2::unit(2 * half_line, "pt")
+  } else {
+    spec_legend_position <- "top"
+    spec_legend_direction <- "horizontal"
+    legend_justification_spec <- c(0,0)
+    legend_box_spacing_spec <- ggplot2::unit(0, "char")
+  }
 
   ggplot2::theme_minimal(base_size = base_size,
                          base_family = base_family,
@@ -75,9 +91,9 @@ ft_theme <- function(base_size = 12,
       ),
       panel.grid.major.x = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
-      legend.position = "top",
-      legend.justification = c(0,0),
-      legend.direction = "horizontal",
+      legend.position = spec_legend_position,
+      legend.justification = legend_justification_spec,
+      legend.direction = spec_legend_direction,
       legend.title = ggplot2::element_text(hjust = 0,
                                            color = other_text_color,
                                            size = ggplot2::rel(0.9),
@@ -89,7 +105,7 @@ ft_theme <- function(base_size = 12,
         size = ggplot2::rel(0.8)
       ),
       legend.margin = ggplot2::margin(),
-      legend.box.spacing = ggplot2::unit(0, "char"),
+      legend.box.spacing = legend_box_spacing_spec,
       plot.margin = ggplot2::margin(1,1,1,1, unit = "char"),
 
       complete = TRUE
