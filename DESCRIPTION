@@ -1,7 +1,7 @@
 Package: ftplottools
 Version: 0.1.3
 Date: 2019-08-06
-Title: Styles For FT Graphs
+Title: Styles for FT Graphs
 Authors@R: person("Oliver", "Elliott", email = "oliver.elliott@ft.com", role = c("aut","cre"))
 Author: Oliver Elliott [aut, cre]
 Maintainer: Oliver Elliott <oliver.elliott@ft.com>

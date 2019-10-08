@@ -1,9 +1,9 @@
 context("test-colours")
 
 test_that("ft_colour returns expected values", {
-  expect_equal(ft_colors("paper"), c(paper = "#FFF1E5"))
-  expect_equal(ft_colors("claret"), c(claret = "#990F3D"))
-  expect_equal(ft_colors("black-30"), c(`black-30` = "#B3A9A0"))
+  expect_equal(ft_colors("paper"), c("#FFF1E5"))
+  expect_equal(ft_colors("claret"), c("#990F3D"))
+  expect_equal(ft_colors("black-30"), c("#B3A9A0"))
 })
 
 test_that("ft_colors returns the correct length",{
