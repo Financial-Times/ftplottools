@@ -2,6 +2,7 @@
 #' @param legend_right Logical indicating whether legend should be placed to
 #' the right of the plot. If FALSE, the default, legend is positioned above the
 #' plot.
+#' @param theme_dark Logical indicating whether to use the dark color scheme
 #' @param base_size The base font size
 #' @param base_family Font family
 #' @param base_line_size Default
@@ -19,7 +20,14 @@
 #'   facet_wrap(vars(class)) +
 #'   ft_theme()
 #'
+
+library(ggplot2)
+ggplot(mpg, aes(displ, hwy, color = class)) +
+  geom_point() +
+  ft_theme()
+
 ft_theme <- function(legend_right = FALSE,
+                     theme_dark = FALSE,
                      base_size = 12,
                      base_family = "",
                      base_line_size = base_size / 170,
@@ -41,6 +49,13 @@ ft_theme <- function(legend_right = FALSE,
     spec_legend_direction <- "horizontal"
     legend_justification_spec <- c(0,0)
     legend_box_spacing_spec <- ggplot2::unit(0, "char")
+  }
+
+  if(theme_dark == TRUE){
+    grid_line_color <- ft_colors_a("linesocial-axis-lines")
+    title_text_color <- ft_colors_a("white")
+    other_text_color <- ft_colors_a("linesocial-text")
+    background_color <- ft_colors_a("linesocial-background-slate")
   }
 
   ggplot2::theme_minimal(base_size = base_size,
@@ -111,4 +126,3 @@ ft_theme <- function(legend_right = FALSE,
       complete = TRUE
     )
 }
-

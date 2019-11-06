@@ -1,4 +1,3 @@
-
 # FT Origami Colours
 # https://registry.origami.ft.com/components/o-colors@4.9.0
 ft_o_colors <- c(
@@ -57,7 +56,16 @@ ft_o_colors <- c(
   `teal-70` = "#12A5B3",
   `teal-80` = "#14BDCC",
   `teal-90` = "#17D4E6",
-  `teal-100` = "#1AECFF"
+  `teal-100` = "#1AECFF",
+  `linesocial-axis-lines` = "#52555B",
+  `linesocial-background-slate` = "#272A32",
+  `linesocial-text` = "#B8B8B8",
+  `linesocial-red` = "#FF0055",
+  `linesocial-blue` = "#0066FF",
+  `linesocial-green` = "#B1E645",
+  `linesocial-lightblue` = "#00CCFF",
+  `linesocial-offwhite` = "#F2E5DA",
+  `linesocial-grey` = "#65798C"
 )
 
 ft_colors <- function(...){
@@ -104,7 +112,9 @@ ft_o_palettes <- list(
   `white` = ft_colors("white-10","white-20","white-40","white-60","white-80"),
   `claret` = ft_colors("claret-30","claret-40","claret-50","claret-60","claret-70","claret-80","claret-90","claret-100"),
   `oxford` = ft_colors("oxford-30","oxford-40","oxford-50","oxford-60","oxford-70","oxford-80","oxford-90","oxford-100"),
-  `teal` = ft_colors("teal-20","teal-30","teal-40","teal-50","teal-60","teal-70","teal-80","teal-90","teal-100")
+  `teal` = ft_colors("teal-20","teal-30","teal-40","teal-50","teal-60","teal-70","teal-80","teal-90","teal-100"),
+  `dark main` = ft_colors("linesocial-axis-lines","linesocial-background-slate","linesocial-text"),
+  `dark primary` = ft_colors("linesocial-red","linesocial-blue","linesocial-green","linesocial-lightblue","linesocial-offwhite","linesocial-grey")
 )
 
 
