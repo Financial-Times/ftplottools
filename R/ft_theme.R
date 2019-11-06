@@ -21,11 +21,6 @@
 #'   ft_theme()
 #'
 
-library(ggplot2)
-ggplot(mpg, aes(displ, hwy, color = class)) +
-  geom_point() +
-  ft_theme()
-
 ft_theme <- function(legend_right = FALSE,
                      theme_dark = FALSE,
                      base_size = 12,
