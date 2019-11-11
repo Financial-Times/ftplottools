@@ -47,10 +47,10 @@ ft_theme <- function(legend_right = FALSE,
   }
 
   if(theme_dark == TRUE){
-    grid_line_color <- ft_colors_a("linesocial-axis-lines")
-    title_text_color <- ft_colors_a("white")
-    other_text_color <- ft_colors_a("linesocial-text")
-    background_color <- ft_colors_a("linesocial-background-slate")
+    grid_line_color <- ft_colors("linesocial-axis-lines")
+    title_text_color <- ft_colors("white")
+    other_text_color <- ft_colors("linesocial-text")
+    background_color <- ft_colors("linesocial-background-slate")
   }
 
   ggplot2::theme_minimal(base_size = base_size,
