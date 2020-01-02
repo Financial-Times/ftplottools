@@ -63,7 +63,8 @@ ft_theme <- function(legend_right = FALSE,
       plot.caption = ggplot2::element_text(
         color = other_text_color,
         hjust = 0,
-        size = ggplot2::rel(0.8)
+        size = ggplot2::rel(0.8),
+        margin = margin(t = half_line)
       ),
       axis.title = ggplot2::element_text(
         color = other_text_color,
