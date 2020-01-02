@@ -84,7 +84,7 @@ ft_theme <- function(legend_right = FALSE,
         size = grid_line_size
       ),
       axis.ticks.y = ggplot2::element_blank(),
-      axis.ticks.length = ggplot2::unit(1,"char"),
+      axis.ticks.length = ggplot2::unit(0.5,"char"),
       panel.grid.major.y = ggplot2::element_line(
         color = grid_line_color,
         size = grid_line_size
