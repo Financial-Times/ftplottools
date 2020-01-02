@@ -51,13 +51,14 @@ ft_theme <- function(legend_right = FALSE,
         color = title_text_color,
         size = ggplot2::rel(1.2),
         face = "bold",
-        hjust = 0
+        hjust = 0,
+        margin = ggplot2::margin(b = half_line)
       ),
       plot.subtitle = ggplot2::element_text(
         color = other_text_color,
         face = "bold",
         hjust = 0,
-        margin = ggplot2::margin(t = half_line)
+        margin = ggplot2::margin(b = half_line)
       ),
       plot.caption = ggplot2::element_text(
         color = other_text_color,
