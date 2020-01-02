@@ -76,6 +76,7 @@ ft_theme <- function(legend_right = FALSE,
         size = ggplot2::rel(0.8),
         margin = ggplot2::margin()
       ),
+      axis.text.y = ggplot2::element_text(margin = ggplot2::margin(r = -0.8 * half_line / 2), hjust = 1),
       axis.line = ggplot2::element_line(
         colour = grid_line_color,
         size = grid_line_size
