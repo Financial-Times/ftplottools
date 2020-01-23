@@ -51,18 +51,20 @@ ft_theme <- function(legend_right = FALSE,
         color = title_text_color,
         size = ggplot2::rel(1.2),
         face = "bold",
-        hjust = 0
+        hjust = 0,
+        margin = ggplot2::margin(b = half_line)
       ),
       plot.subtitle = ggplot2::element_text(
         color = other_text_color,
         face = "bold",
         hjust = 0,
-        margin = ggplot2::margin(t = half_line)
+        margin = ggplot2::margin(b = half_line)
       ),
       plot.caption = ggplot2::element_text(
         color = other_text_color,
         hjust = 0,
-        size = ggplot2::rel(0.8)
+        size = ggplot2::rel(0.8),
+        margin = margin(t = half_line)
       ),
       axis.title = ggplot2::element_text(
         color = other_text_color,
@@ -74,6 +76,7 @@ ft_theme <- function(legend_right = FALSE,
         size = ggplot2::rel(0.8),
         margin = ggplot2::margin()
       ),
+      axis.text.y = ggplot2::element_text(margin = ggplot2::margin(r = -0.8 * half_line / 2), hjust = 1),
       axis.line = ggplot2::element_line(
         colour = grid_line_color,
         size = grid_line_size
@@ -84,7 +87,7 @@ ft_theme <- function(legend_right = FALSE,
         size = grid_line_size
       ),
       axis.ticks.y = ggplot2::element_blank(),
-      axis.ticks.length = ggplot2::unit(1,"char"),
+      axis.ticks.length = ggplot2::unit(0.5,"char"),
       panel.grid.major.y = ggplot2::element_line(
         color = grid_line_color,
         size = grid_line_size
