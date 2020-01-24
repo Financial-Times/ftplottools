@@ -2,6 +2,7 @@
 #' @param legend_right Logical indicating whether legend should be placed to
 #' the right of the plot. If FALSE, the default, legend is positioned above the
 #' plot.
+#' @param theme_dark Logical indicating whether to use the dark color scheme
 #' @param base_size The base font size
 #' @param base_family Font family
 #' @param base_line_size Default
@@ -10,6 +11,7 @@
 #' @export
 #' @examples
 #' library(ggplot2)
+#' source("./R/ft_colors.R")
 #' ggplot(mpg, aes(displ, hwy, color = class)) +
 #'   geom_point() +
 #'   ft_theme()
@@ -19,7 +21,9 @@
 #'   facet_wrap(vars(class)) +
 #'   ft_theme()
 #'
+
 ft_theme <- function(legend_right = FALSE,
+                     theme_dark = FALSE,
                      base_size = 12,
                      base_family = "",
                      base_line_size = base_size / 170,
@@ -30,6 +34,7 @@ ft_theme <- function(legend_right = FALSE,
   grid_line_size <- 0.2
   title_text_color <- ft_colors("black")
   other_text_color <- ft_colors("black-50")
+  background_color <- ft_colors("white")
 
   if(legend_right == TRUE){
     spec_legend_position <- "right"
@@ -41,6 +46,13 @@ ft_theme <- function(legend_right = FALSE,
     spec_legend_direction <- "horizontal"
     legend_justification_spec <- c(0,0)
     legend_box_spacing_spec <- ggplot2::unit(0, "char")
+  }
+
+  if(theme_dark == TRUE){
+    grid_line_color <- ft_colors("linesocial-axis-lines")
+    title_text_color <- ft_colors("white")
+    other_text_color <- ft_colors("linesocial-text")
+    background_color <- ft_colors("linesocial-background-slate")
   }
 
   ggplot2::theme_minimal(base_size = base_size,
@@ -94,6 +106,9 @@ ft_theme <- function(legend_right = FALSE,
       ),
       panel.grid.major.x = ggplot2::element_blank(),
       panel.grid.minor = ggplot2::element_blank(),
+      panel.background = element_rect(fill = background_color,
+                                      colour = background_color,
+                                      size = 0.5, linetype = "solid"),
       legend.position = spec_legend_position,
       legend.justification = legend_justification_spec,
       legend.direction = spec_legend_direction,
@@ -110,8 +125,11 @@ ft_theme <- function(legend_right = FALSE,
       legend.margin = ggplot2::margin(),
       legend.box.spacing = legend_box_spacing_spec,
       plot.margin = ggplot2::margin(1,1,1,1, unit = "char"),
+      plot.background = element_rect(fill = background_color,
+                                      colour = background_color,
+                                      size = 0.5, linetype = "solid"),
+
 
       complete = TRUE
     )
 }
-
