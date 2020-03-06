@@ -29,7 +29,7 @@ ft_theme <- function(legend_right = FALSE,
   grid_line_color <- ft_colors("black-20")
   grid_line_size <- 0.2
   title_text_color <- ft_colors("black")
-  other_text_color <- ft_colors("black-50")
+  other_text_color <- ft_colors("black-70")
 
   if(legend_right == TRUE){
     spec_legend_position <- "right"
