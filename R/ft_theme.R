@@ -110,6 +110,8 @@ ft_theme <- function(legend_right = FALSE,
       legend.margin = ggplot2::margin(),
       legend.box.spacing = legend_box_spacing_spec,
       plot.margin = ggplot2::margin(1,1,1,1, unit = "char"),
+      plot.title.position = "plot",
+      plot.caption.position = "plot",
 
       complete = TRUE
     )
