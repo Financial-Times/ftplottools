@@ -1,0 +1,57 @@
+---
+title: "Code tour"
+output: NA
+---
+
+```{r}
+devtools::load_all()
+```
+
+ftplottools has two major components:
+
+\- The Colors (along with pallettes and scales)
+
+\- Theme components to be applied as one.
+
+## Colors
+
+### Getting the colors:
+
+```{r}
+ft_colors()
+```
+
+```{r}
+ft_colors("claret", "oxford")
+```
+
+```{r}
+library(tidyverse)
+mtcars %>% 
+  ggplot(aes(mpg, hp, fill = as.factor(cyl))) +
+  geom_col() +
+  # scale_fill_manual(values = ft_colors("claret", "sky", "oxford")) +
+  theme(axis.title = element_text(size = 14)) +
+  labs(title = "James") +
+  # theme(plot.title.position = "plot") +
+  ft_theme(legend_right = T)
+```
+
+## Getting the palettes 
+
+The first arguments is the number of colors requested.
+
+```{r}
+origami_primary(1)
+origami_primary(15)
+```
+
+## Scales
+
+```{r}
+mtcars %>% 
+  ggplot(aes(mpg, hp, fill = as.factor(cyl))) +
+  geom_col() +
+  # scale_fill_ft() +
+  scale_color_ft()
+```
